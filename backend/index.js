@@ -9,6 +9,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/books-collection', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => {
+    console.log('app connected to database!')
     app.listen(PORT, () => {
         console.log(`server is listening to port: ${PORT}`)
     })
