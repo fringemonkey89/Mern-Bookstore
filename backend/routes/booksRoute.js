@@ -3,12 +3,8 @@ const Book = require('../models/bookModels.js')
 
 const router = express.Router();
 
-app.get('/', (req, res) => {
-    console.log(req)
-    return res.status(234).send('Welcome to Mern stack tutorial')
-})
 
-app.post('/', async (req, res) => {
+router.post('/', async (req, res) => {
      
     try{
 
@@ -37,7 +33,7 @@ app.post('/', async (req, res) => {
     }
 })
 
-app.get('/books', async (req, res) => {
+router.get('/books', async (req, res) => {
     try{
        const books = await Book.find({});
        return res.status(200).json({
@@ -51,11 +47,11 @@ app.get('/books', async (req, res) => {
 
 })
 
-app.get('/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     try{
         const { id } = req.params;
 
-       const book = await Book.findOne({ id});
+       const book = await Book.findOne( id);
 
        return res.status(200).json(book)
     } catch(error) {
@@ -64,7 +60,7 @@ app.get('/:id', async (req, res) => {
     }
 });
 
-app.put('/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
      
     try{
 
@@ -95,7 +91,7 @@ app.put('/:id', async (req, res) => {
 })
 
 
-app.delete('/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try{
         const { id} = req.params;
 
@@ -112,3 +108,5 @@ app.delete('/:id', async (req, res) => {
         res.status(500).send({ message: error.message})
     }
 })
+
+module.exports = router;
