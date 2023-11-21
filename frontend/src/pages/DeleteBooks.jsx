@@ -13,18 +13,21 @@ const DeleteBook = () => {
     const { enqueueSnackbar } = useSnackbar();
 
     const handleDeleteBook = () => {
-        useEffect(() => {
-            setLoading(true);
-            axios
-            .delete()
-            .then((response) => {
-    
+        setLoading(true)
+        axios
+            .delete(`http://localhost:5555/books/${id}`)
+            .then(() => {
+                setLoading(false)
+                enqueueSnackbar('book was deleted', {variant: 'success'})
+                navigate('/')
             })
             .catch((error) => {
-                console.log(error)
+                
                 setLoading(false);
-            })
-        }, [])
+                enqueueSnackbar('Error', {variant: 'error'})
+                console.log(error)
+            
+        })
     }
 
     return (
