@@ -13,6 +13,24 @@ const EditBook = () => {
     const navigate  = useNavigate();
     const {id} = useParams();
     const { enqueueSnackbar } = useSnackbar();
+
+    useEffect(() => {
+        setLoading(true);
+        axios.get()
+        .then((response) => {
+
+        })
+        .catch((error) => {
+            console.log(error)
+            setLoading(false);
+        })
+    }, [])
+
+    const handleEditeBook = () => {
+
+        
+    }
+
     return (
         <div> EditBook</div>
     )
